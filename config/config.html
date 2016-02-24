@@ -41,6 +41,11 @@
     <br>
     <label for="deploy_fail_message">Deploy Fail Message</label>
     <textarea name="deploy_fail_message" ng-model="config.deploy_fail_message"></textarea>
+    <br>
+    <label for="fire_on_success">
+        Fire on success
+        <input type="checkbox" name="fire_on_success" ng-model="config.fire_on_deploy">
+    </label>
   </fieldset>
   <button class="btn btn-success" ng-click="save()" ng-disabled="saving">Save</button>
   <button class="btn btn-primary" ng-click="fillEmptyFields()">Fill Empty Fields</button>

@@ -31,5 +31,9 @@ module.exports = {
   deploy_fail_message: {
     type: String,
     default: basicTemplate(":boom:", "Deploy exited with a non-zero status!")
+  },
+  fire_on_success: {
+    type: Boolean,
+    default: false
   }
 }
