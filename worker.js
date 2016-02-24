@@ -47,6 +47,9 @@ function removeSlackEvilAttr(str){
 
 function slackPOST(io, job, data, context, config, phase) {
   var result = (data.exitCode === 0 ? 'pass' : 'fail');
+  if (!config.fire_on_success && result === 'pass') {
+    return;
+  }
   if (job.trigger.message) {
       var temp = job.trigger.message.split(/\n/);
       job.trigger.message = removeSlackEvilAttr(temp[0]);
