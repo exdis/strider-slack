@@ -32,7 +32,11 @@ module.exports = {
           io.removeListener('job.status.cancelled', cleanup);
         }
         io.on('job.status.cancelled', cleanup);
-        io.on('job.status.phase.done', onPhaseDone);
+        io.on('job.status.phase.done', function (id, data) {
+          if (job._id === id) {
+            onPhaseDone(id, data);
+          }
+        });
       }
     })
   }
@@ -81,7 +85,7 @@ function slackPOST(io, job, data, context, config, phase) {
         }
       ];
     }
-    
+
     slack.send(sendObject, function(err) {
       // It's too late to add notes to the job; just log
       if (err) console.error(err.stack)
